@@ -1,4 +1,4 @@
-version: '1'
+version: '3'
 
 networks: 
     laravel:
@@ -30,10 +30,8 @@ services:
             - "5432:5432"
         volumes:
             - ./postgresql:/var/lib/postgresql/data
-        environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=postgres
-            - POSTGRES_DB=laravel_docker
+        env_file:
+            - .env
         networks:
             - laravel
 
