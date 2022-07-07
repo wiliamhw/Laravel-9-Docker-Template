@@ -5,3 +5,4 @@ node_modules/
 .github/
 composer.lock
 package.lock
+bootstrap/
