@@ -1,3 +1,7 @@
-/node_modules
-/storage
-/vendor 
+public/
+vendor/
+storage/
+node_modules/
+.github/
+composer.lock
+package.lock

@@ -1,0 +1,67 @@
+name: Build
+
+on: push
+
+defaults:
+  run:
+    working-directory: ./src
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ 8.0 ]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-luminous-composer-dependencies
+        with:
+          path: ~/.composer
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
+          coverage: none
+      - name: Install composer dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer install --prefer-dist
+      - name: Run phpstan analysis
+        run: composer phpstan-analysis
+      - name: Run phpcpd analysis
+        run: composer phpcpd-analysis
+  phpunit:
+    needs: [analysis]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [8.0]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+      - name: Install composer dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer install --prefer-dist
+      - name: Initialize environment configuration
+        run: cp .env.testing .env
+      - name: Generate new application key
+        run: php artisan key:generate --env=testing
+      - name: Run unit test
+        run: php artisan test --parallel tests/Unit
+      - name: Run feature test
+        run: php artisan test --parallel tests/Feature
