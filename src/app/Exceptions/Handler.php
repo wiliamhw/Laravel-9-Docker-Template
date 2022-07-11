@@ -2,11 +2,18 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Traits\HandleApiExceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use HandleApiExceptions;
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -24,14 +31,21 @@ class Handler extends ExceptionHandler
     protected $dontFlash = ["current_password", "password", "password_confirmation"];
 
     /**
-     * Register the exception handling callbacks for the application.
+     * Render an exception into an HTTP response.
      *
-     * @return void
+     * @param Request $request
+     * @param Throwable $e
+     *
+     * @throws Throwable
+     *
+     * @return Response
      */
-    public function register()
+    public function render($request, Throwable $e): Response
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        if ($request->expectsJson() || Str::startsWith($request->getRequestUri(), ['/api/'])) {
+            return $this->renderApiException($e);
+        }
+
+        return parent::render($request, $e);
     }
 }

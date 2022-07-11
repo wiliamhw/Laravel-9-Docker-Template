@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
+});
+
+Route::get("/test", function () {
+    return new JsonResponse("Hello, API");
+});
+
+Route::get("/test/error", function () {
+    throw new BadRequestException("Test Error Trace");
 });
