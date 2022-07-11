@@ -1,17 +1,51 @@
-/node_modules
-/public/hot
-/public/storage
-/storage/*.key
+# Code Editor / IDE files
+# ----------------------------------------------------------------------- #
+
+.idea
+*.sublime-project
+*.sublime-workspace
+
+
+# Commonly ignored files
+# ----------------------------------------------------------------------- #
+
+*.backup
+*.bak
+*.bz2
+*.cache
+*.gz
+*.log
+*.rar
+
+
+# Composer & Vendor Files
+# ----------------------------------------------------------------------- #
+
+composer.lock
+composer.phar
 /vendor
+
+
+# Laravel Configurations and Application Assets
+# ----------------------------------------------------------------------- #
+
 .env
-.env.backup
 .phpunit.result.cache
-docker-compose.override.yml
-Homestead.json
-Homestead.yaml
+/node_modules
+/public/storage
+/public/coverage
+/public/gc
+/public/hot
+storage/framework/laravel-excel/
+storage/*.key
 npm-debug.log
 yarn-error.log
-/.idea
-/.vscode
-_ide_helper*
+package-lock.json
+.gitignore
+.php-cs-fixer.cache
+composer-setup.php
+phpunit.xml
 .phpstorm.meta.php
+_ide_helper.php
+_ide_helper_models.php
+

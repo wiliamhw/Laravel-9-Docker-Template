@@ -6,5 +6,6 @@ node_modules/
 composer.lock
 package.lock
 bootstrap/
-_ide_helper*
 .phpstorm.meta.php
+_ide_helper.php
+_ide_helper_models.php
