@@ -2,6 +2,8 @@ FROM php:8.1.6-fpm-alpine
 
 WORKDIR /var/www/app
 
+ENV CONTAINER_PREFIX ${CONTAINER_PREFIX}
+
 RUN apk update && apk add \
     build-base \
     git \
@@ -11,7 +13,8 @@ RUN apk update && apk add \
     libpq-dev \
     postgresql \
     postgresql-client \
-    unzip
+    unzip \
+    nano
 
 RUN docker-php-ext-configure pgsql
 RUN docker-php-ext-install pdo pdo_pgsql pgsql zip exif pcntl
