@@ -29,7 +29,8 @@
         "spatie/laravel-ignition": "^1.0",
         "nunomaduro/larastan": "^2.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
-        "sebastian/phpcpd": "^6.0"
+        "sebastian/phpcpd": "^6.0",
+        "phpmd/phpmd": "2.11"
     },
     "autoload": {
         "psr-4": {
@@ -59,10 +60,16 @@
         ],
         "analyse": [
             "composer phpstan-analysis",
+            "composer phpmd-analysis",
             "composer phpcpd-analysis"
         ],
         "phpstan-analysis": [
             "@php vendor/bin/phpstan analyse -c phpstan.neon --no-progress --memory-limit=-1"
+        ],
+        "phpmd-analysis": [
+            "@php vendor/bin/phpmd app/ text codesize,controversial,design,naming,unusedcode,.phpmd.cleancode.xml",
+            "@php vendor/bin/phpmd config/ text codesize,controversial,design,naming,unusedcode,.phpmd.cleancode.xml",
+            "@php vendor/bin/phpmd database/ text codesize,controversial,design,unusedcode,.phpmd.cleancode.xml"
         ],
         "phpcpd-analysis": [
             "@php vendor/bin/phpcpd --min-lines=4 --min-tokens=36 app/ cms/"

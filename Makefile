@@ -26,6 +26,9 @@ down:
 ex:
 	docker exec -it $(CONTAINER_PREFIX)_php /bin/sh
 
+analyse:
+	cd src && composer analyse 2>&1 | tee storage/logs/analyse.log
+
 start_services:
 	sudo service redis-server start || true
 	sudo service postgresql start || true
@@ -40,4 +43,4 @@ delete_postgresql:
 	sudo chmod +rwx posgresql
 	sudo rm -rf postgresql
 
-.PHONY: build up stop down ex start_services stop_services delete_postgresql
+.PHONY: build up stop down ex analyse start_services stop_services delete_postgresql
