@@ -4,7 +4,6 @@ namespace App\Exceptions;
 
 use App\Exceptions\Traits\HandleApiExceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,7 +43,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e): Response
     {
-        if ($request->expectsJson() || Str::startsWith($request->getRequestUri(), ['/api/'])) {
+        if ($request->expectsJson() || Str::startsWith($request->getRequestUri(), ["/api/"])) {
             return $this->renderApiException($e);
         }
 

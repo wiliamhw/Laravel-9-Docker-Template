@@ -13,11 +13,11 @@
         "format:check": "npm run prettier -- . --check"
     },
     "devDependencies": {
+        "@prettier/plugin-php": "^0.17.6",
         "axios": "^0.25",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
-        "@prettier/plugin-php": "^0.17.6",
-        "prettier": "^2.5.1"
+        "prettier": "^2.7.1"
     }
 }

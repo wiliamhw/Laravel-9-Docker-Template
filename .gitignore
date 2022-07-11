@@ -25,3 +25,6 @@ Homestead.json
 postgresql/
 .idea
 .idea/
+
+.php-cs-fixer.cache
+

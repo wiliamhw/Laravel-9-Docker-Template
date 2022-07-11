@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\JsonResponse;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +25,5 @@ Route::get("/test", function () {
 });
 
 Route::get("/test/error", function () {
-    throw new BadRequestException("Test Error Trace");
+    throw new BadRequestHttpException("Test Error Trace");
 });

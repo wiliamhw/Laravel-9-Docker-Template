@@ -23,24 +23,28 @@ trait HandleApiExceptions
     protected function convertApiExceptionToArray(Throwable $exception): array
     {
         $code = $this->getApiErrorCode($exception);
-        $errors = ($exception instanceof  ValidationException) ? $exception->errors() : [];
-        $debugEnabled = config('app.debug', false);
+        $errors = $exception instanceof ValidationException ? $exception->errors() : [];
+        $debugEnabled = config("app.debug", false);
 
-        return ($debugEnabled === true) ? [
-            'code'      => $code,
-            'message'   => $exception->getMessage(),
-            'errors'    => $errors,
-            'exception' => get_class($exception),
-            'file'      => $exception->getFile(),
-            'line'      => $exception->getLine(),
-            'trace'     => collect($exception->getTrace())->map(static function ($trace): array {
-                return Arr::except($trace, ['args']);
-            })->all(),
-        ] : [
-            'code'    => $code,
-            'message' => $exception->getMessage(),
-            'errors'  => $errors,
-        ];
+        return $debugEnabled === true
+            ? [
+                "code" => $code,
+                "message" => $exception->getMessage(),
+                "errors" => $errors,
+                "exception" => get_class($exception),
+                "file" => $exception->getFile(),
+                "line" => $exception->getLine(),
+                "trace" => collect($exception->getTrace())
+                    ->map(static function ($trace): array {
+                        return Arr::except($trace, ["args"]);
+                    })
+                    ->all(),
+            ]
+            : [
+                "code" => $code,
+                "message" => $exception->getMessage(),
+                "errors" => $errors,
+            ];
     }
 
     /**
@@ -84,13 +88,13 @@ trait HandleApiExceptions
      */
     protected function renderApiException(Throwable $exception): JsonResponse
     {
-        $headers = ($exception instanceof HttpExceptionInterface) ? $exception->getHeaders() : [];
+        $headers = $exception instanceof HttpExceptionInterface ? $exception->getHeaders() : [];
 
         return new JsonResponse(
             $this->convertApiExceptionToArray($exception),
             $this->getApiErrorCode($exception),
             $headers,
-            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES,
         );
     }
 }

@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: [ 8.0 ]
+        php: [ 8.1.6 ]
     steps:
       - uses: actions/checkout@v1
       - name: Cache composer dependencies
@@ -37,6 +37,8 @@ jobs:
         run: composer install --prefer-dist
       - name: Run phpstan analysis
         run: composer phpstan-analysis
+      - name: Run phpmd analysis
+        run: composer phpmd-analysis
       - name: Run phpcpd analysis
         run: composer phpcpd-analysis
   phpunit:
@@ -44,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: [8.0]
+        php: [8.1.6]
     steps:
       - uses: actions/checkout@v1
       - name: Setup PHP
