@@ -39,6 +39,8 @@ class Handler extends ExceptionHandler
      * @throws Throwable
      *
      * @return Response
+     *
+     * @SuppressWarnings(PHPMD.ShortVariable)
      */
     public function render($request, Throwable $e): Response
     {
