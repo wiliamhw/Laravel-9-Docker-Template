@@ -30,7 +30,7 @@ Laravel 9 Docker template using PHP 8.1.6, nginx, redis, and Postgres SQL 14.4.
 ### Installation
 #### 0. Clone this project
 
-#### 1. Create `.env` file in root directory
+#### 1. Create `.env` file from `.env.example` in root directory
 The given configuration will be used by Docker to build the containers.  
 
 If you change `NGINX_PORT` to other than port 8000 or `PHP_PORT` to other than port 9000,
