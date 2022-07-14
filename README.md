@@ -53,13 +53,26 @@ server {
 ```
 
 #### 2. Run command `make build` on your terminal
+This command will build Docker Compose containers.
+
 #### 3. Run command `make up` on your terminal
-#### 4. On other terminal, run `make ex` to open the PHP container's terminal
+This command will run Docker Compose containers.
+
+#### 4. On other terminal, run `make ex`
+This command will open PHP container terminal.
+
 #### 5. Adjust `.env` file in `/src` directory
+The given DB credentials, DB port, and Redis port in `/src/.env` must be equal to the given values in `/.env`.  
+You also need to change `DB_HOST` value in `/src/.env` based on this format: `{CONTAINER_PREFIX}_postgres`.  
+You can see the value of `CONTAINER_PREFIX` in `/.env` at the project root directory.
+
 #### 6. Go to [http://localhost:8000/](http://localhost:8000/) or any port you assign to `NGINX_PORT` in the root directory `.env` file
+This action will open Laravel application in a web browser.  
+If you want to open [Laravel Telescope](https://laravel.com/docs/9.x/telescope) page, you can access
+[http://localhost:8000/telescope](http://localhost:8000/telescope) or any port you assign to `NGINX_PORT` in the root directory `.env` file.
 
 ## Available Commands
-### Makefile (only available on UNIX-based system)
+### Makefile
 * `make build` : build Docker Compose containers
 * `make up` : run Docker Compose containers
 * `make stop` : stop Docker Compose containers
