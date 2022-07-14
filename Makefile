@@ -27,7 +27,8 @@ down:
 
 purge:
 	docker rmi -f $(CONTAINER_PREFIX)
-	make delete_postgresql
+	sudo chmod -R +rwx postgresql
+	sudo rm -rf postgresql
 
 ex:
 	docker exec -it $(CONTAINER_PREFIX)_php /bin/sh
@@ -45,8 +46,4 @@ stop_services:
 	sudo service postgresql stop || true
 	sudo service nginx stop || true
 
-delete_postgresql:
-	sudo chmod -R +rwx postgresql
-	sudo rm -rf postgresql
-
-.PHONY: build up stop down ex analyse purge start_services stop_services delete_postgresql
+.PHONY: build up stop down ex analyse purge start_services stop_services
