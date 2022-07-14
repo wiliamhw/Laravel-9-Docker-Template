@@ -2,7 +2,8 @@ include .env
 
 build:
 	make stop_services
-	make build
+	sudo chmod -R +rwx postgresql
+	docker-compose -f docker-compose.yml build
 	docker-compose -f docker-compose.yml up -d
 	docker exec -d $(CONTAINER_PREFIX)_php composer install
 	docker exec -d $(CONTAINER_PREFIX)_php chmod -R 777 storage
@@ -10,6 +11,7 @@ build:
 		&& docker exec -d $(CONTAINER_PREFIX)_php cp -n .env.example .env \
 		&& docker exec -d $(CONTAINER_PREFIX)_php php artisan key:generate
 	make stop
+	echo "Build complete"
 
 up:
 	make stop_services
@@ -22,6 +24,10 @@ stop:
 down:
 	docker-compose -f docker-compose.yml down
 	make start_services
+
+purge:
+	docker rmi -f $(CONTAINER_PREFIX)
+	make delete_postgresql
 
 ex:
 	docker exec -it $(CONTAINER_PREFIX)_php /bin/sh
@@ -40,7 +46,7 @@ stop_services:
 	sudo service nginx stop || true
 
 delete_postgresql:
-	sudo chmod +rwx posgresql
+	sudo chmod -R +rwx postgresql
 	sudo rm -rf postgresql
 
-.PHONY: build up stop down ex analyse start_services stop_services delete_postgresql
+.PHONY: build up stop down ex analyse purge start_services stop_services delete_postgresql
