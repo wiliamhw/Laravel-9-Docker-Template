@@ -61,7 +61,7 @@ This command will build Docker Compose containers.
 #### 3. Run command `make up` on your terminal
 This command will run Docker Compose containers.
 
-#### 4. On other terminal, run `make ex`
+#### 4. Run command `make ex` on your terminal
 This command will open PHP container terminal.
 
 #### 5. Adjust `.env` file in `/src` directory
