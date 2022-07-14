@@ -72,7 +72,12 @@ If you want to open [Laravel Telescope](https://laravel.com/docs/9.x/telescope) 
 [http://localhost:8000/telescope](http://localhost:8000/telescope) or any port you assign to `NGINX_PORT` in the root directory `.env` file.
 
 ## Available Commands
+To run NPM or composer command, your terminal need to be inside `src` directory in PHP container terminal.  
+To do that, you need to open PHP container terminal by running `make ex` on the project root directory.  
+Then, in the PHP container terminal, go to `src` directory by running `cd src`.
+
 ### Makefile
+>Makefile command can be run on the project root directory, where `Makefile` resides in.
 * `make build` : build Docker Compose containers
 * `make up` : run Docker Compose containers
 * `make stop` : stop Docker Compose containers
@@ -82,9 +87,11 @@ If you want to open [Laravel Telescope](https://laravel.com/docs/9.x/telescope) 
 * `make analyse` : run static analysis and store the result in `/src/storage/logs/analyse.log`
 
 ### Composer
+> Your terminal needs to be inside `src` directory in PHP container terminal.**
 * `composer test` : run Laravel automated test in parallel
 * `composer ide-helper` : run [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
 
 ### NPM
+> Your terminal needs to be inside `src` directory in PHP container terminal.**
 * `npm run format` : reformat code using [Prettier](https://prettier.io/)
 * `npm run format:check` : check code format using [Prettier](https://prettier.io/)
