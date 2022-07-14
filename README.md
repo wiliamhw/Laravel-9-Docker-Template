@@ -90,11 +90,11 @@ Then, in the PHP container terminal, go to `src` directory by running `cd src`.
 * `make analyse` : run static analysis and store the result in `/src/storage/logs/analyse.log`
 
 ### Composer
-> Your terminal needs to be inside `src` directory in PHP container terminal.**
+> Your terminal needs to be inside `src` directory in PHP container terminal.
 * `composer test` : run Laravel automated test in parallel
 * `composer ide-helper` : run [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
 
 ### NPM
-> Your terminal needs to be inside `src` directory in PHP container terminal.**
+> Your terminal needs to be inside `src` directory in PHP container terminal.
 * `npm run format` : reformat code using [Prettier](https://prettier.io/)
 * `npm run format:check` : check code format using [Prettier](https://prettier.io/)
