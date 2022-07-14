@@ -20,6 +20,7 @@ Laravel 9 Docker template using PHP 8.1.6, nginx, redis, and Postgres SQL 14.4.
   * [Static Analysis & Automated Test](https://github.com/wiliamhw/Laravel-9-Docker-Template/blob/main/.github/workflows/build.yml)
   * [Code Formatter](https://github.com/wiliamhw/Laravel-9-Docker-Template/blob/main/.github/workflows/code-check.yml)
 * [Makefile](https://github.com/wiliamhw/Laravel-9-Docker-Template/blob/main/Makefile)
+* [API Error Handler](https://github.com/wiliamhw/Laravel-9-Docker-Template/blob/main/src/app/Exceptions/Traits/HandleApiExceptions.php)
 
 ## Getting Started
 ### Prerequisites
