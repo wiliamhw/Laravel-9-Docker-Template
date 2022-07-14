@@ -2,8 +2,6 @@ FROM php:8.1.6-fpm-alpine
 
 WORKDIR /var/www/app
 
-ENV CONTAINER_PREFIX ${CONTAINER_PREFIX}
-
 RUN apk update && apk add \
     build-base \
     git \
