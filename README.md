@@ -1,5 +1,5 @@
 # Laravel 9 Docker Template
-Laravel 9 Docker template with github workflows.
+Laravel 9 Docker template using PHP 8.1.6, nginx, redis, and Postgres SQL 14.4.
 
 ## Features
 * [Docker](https://www.docker.com/)
