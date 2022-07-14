@@ -27,4 +27,4 @@ postgresql/
 .idea/
 
 .php-cs-fixer.cache
-
+.vscode

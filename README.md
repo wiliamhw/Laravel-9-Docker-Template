@@ -30,7 +30,7 @@ Laravel 9 Docker template using PHP 8.1.6, nginx, redis, and Postgres SQL 14.4.
 ### Installation
 #### 0. Clone this project
 
-#### 1. Create `.env` file in root directory
+#### 1. Create `.env` file from `.env.example` in root directory
 The given configuration will be used by Docker to build the containers.  
 
 If you change `NGINX_PORT` to other than port 8000 or `PHP_PORT` to other than port 9000,
@@ -90,11 +90,11 @@ Then, in the PHP container terminal, go to `src` directory by running `cd src`.
 * `make analyse` : run static analysis and store the result in `/src/storage/logs/analyse.log`
 
 ### Composer
-> Your terminal needs to be inside `src` directory in PHP container terminal.**
+> Your terminal needs to be inside `src` directory in PHP container terminal.
 * `composer test` : run Laravel automated test in parallel
 * `composer ide-helper` : run [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
 
 ### NPM
-> Your terminal needs to be inside `src` directory in PHP container terminal.**
+> Your terminal needs to be inside `src` directory in PHP container terminal.
 * `npm run format` : reformat code using [Prettier](https://prettier.io/)
 * `npm run format:check` : check code format using [Prettier](https://prettier.io/)
