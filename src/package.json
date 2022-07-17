@@ -9,8 +9,8 @@
         "prod": "npm run production",
         "production": "mix --production",
         "prettier": "prettier",
-        "format": "npm run prettier -- . --write",
-        "format:check": "npm run prettier -- . --check"
+        "format": "npx prettier --write .",
+        "format:check": "npx prettier --check ."
     },
     "devDependencies": {
         "@prettier/plugin-php": "^0.17.6",
