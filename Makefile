@@ -2,7 +2,7 @@ include .env
 
 build:
 	make stop_services
-	sudo chmod 777 postgresql || true
+	sudo chmod 777 -R postgresql || true
 	docker-compose -f docker-compose.yml build
 	docker-compose -f docker-compose.yml up -d
 	docker exec -d $(CONTAINER_PREFIX)_php composer install
