@@ -6,10 +6,10 @@ build:
 	docker-compose -f docker-compose.yml build
 	docker-compose -f docker-compose.yml up -d
 	docker exec -d $(CONTAINER_PREFIX)_php composer install
-	docker exec -d $(CONTAINER_PREFIX)_php chmod -R 777 storage
 	docker exec -d $(CONTAINER_PREFIX)_php [ ! -f .env ] \
 		&& docker exec -d $(CONTAINER_PREFIX)_php cp -n .env.example .env \
 		&& docker exec -d $(CONTAINER_PREFIX)_php php artisan key:generate
+	docker exec -d $(CONTAINER_PREFIX)_php chmod 777 .env storage
 	make stop
 	echo "Build complete"
 
